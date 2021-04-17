@@ -1,0 +1,16 @@
+- kubectl apply -f BasicPods.yaml 
+- kubectl get all
+- kubectl describe pod webapp
+- kubectl apply -f webapp-service.yaml
+- kubectl apply -f firstpod.yaml
+- kubectl apply -f service.yaml
+- kubectl get all
+- kubectl describe svc fleetman-webapp
+- kubectl get all
+- kubectl get po
+- kubectl get po --show-labels
+- kubectl get po --show-labels -l release=0.5
+- kubectl delete po --all   (del all pods)
+- kubectl get all
+- kubectl apply -f pods.yaml
+- kubectl get all
