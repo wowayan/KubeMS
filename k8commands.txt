@@ -14,3 +14,41 @@
 - kubectl get all
 - kubectl apply -f pods.yaml
 - kubectl get all
+- kubectl describe rs webapp
+	- Check the events
+ - instead of running kubectl get all we can use
+	- kubectl rollout status deploy webapp
+	- it will give us interactive running details to see things in action   
+- kubectl rollback history deploy webapp
+- we will see a revision list
+- to return back to the previous revision
+- kubectl rollout undo deploy webapp
+- kubectl rollout undo deploy webapp --to-revision=2 [if we want to go to specific revision]
+- By default, k8 will remember 10 revision of a rollout
+Now, if we have a faulty image mentioned in our yaml, 
+so the present pod creation not going to happen and 
+the status will be always ImagePullBackoff means 
+the previous pod won't be terminated and it'll be running 
+as earlier
+- As k8 maintains its own private DNS service called Kube-DNS
+	- DNS is the database of IP addresses containing a set of 
+    key-value pairs of those services. 
+    For eg: webapp 10.9.3.12
+    That's because we have a concept called namespace
+- It's a way to partitioning our resources into separate 
+areas in Kubernetes
+	- For e.g.: Frontend & backend
+- Kubernetes has own namespaces
+	- kube-public & kube-system
+	- kubectl get namespaces/ns
+	- kubectl get po -n kube-system
+	- kubectl get all -n kube-system
+	- To know the service inside the kube-sytem 
+		- kubectl describe svc kube-dns -n kube-system
+        - But when we run the kubectl describe command, why we never saw any DNS details
+-- kubectl exec -it webapp-ccb5c74c9-mdzrb
+- You'll see we've successfully created the DB . 
+- K8 will automatically do a management of containers & it automatically configures the dns system
+- We can verify it by #cat /etc/resolv.conf
+- run nslookup database
+It should respond with an IP address
